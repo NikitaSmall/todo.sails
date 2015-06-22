@@ -1,5 +1,17 @@
 extends  ../layout
 
 block content
-  .panel
-    | Hello world!
+  .row.panel Hello to my task editor!
+  br
+  .row
+    - each task in tasks
+      .medium-12
+        =task.title
+        
+    if tasks.length == 0
+      .alert-box.radius Your task-list is empty!
+      
+    form(action='/createTask', method='post')
+      input(type='text', name='title')
+      input(type='text', name='description')
+      input.button(type='submit', value='Новое задание!')
