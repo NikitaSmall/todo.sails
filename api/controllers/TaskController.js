@@ -6,6 +6,8 @@
  */
 
 module.exports = {
-	
+	// list of tasks action
+	index: function (req, res) {
+		return res.view('task/index')
+	}
 };
-

@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/foundation/css/foundation.css')
+    link(rel='stylesheet', href='/styles/importer.css')
+    script(src='/foundation/js/vendor/modernizr.js')
+  body
+    block content
+
+    script(src='/foundation/js/vendor/jquery.js')
+    script(src='/foundation/js/foundation.min.js')
+    script(src='/js/dependencies/sails.io.js')
+    script
+      | $(document).foundation();
