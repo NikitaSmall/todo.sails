@@ -29,7 +29,11 @@ module.exports = {
 			owner: req.user.id,
 			task_board: req.param('board'),
 			complete: false
-		}, function(err) {
+		}, function(err, task) {
+			// blast a test socket message
+			sails.sockets.blast('created_task', {
+				message: 'User# ' + req.user.id + ' created a task - task# ' + task.id,
+			});
 			return res.redirect('/board/' + req.param('board'));
 		});
 	}
