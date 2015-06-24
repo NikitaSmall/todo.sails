@@ -24,9 +24,11 @@ module.exports = {
 				});
 			}
 			req.logIn(user, function(err) {
-				if (err) res.view('user/login', {
-						message: err
+				if (err) {
+					return res.view('user/login', {
+							message: err
 					});
+				}
 				return res.redirect('/');
 				// message about user
 				/*
@@ -41,9 +43,13 @@ module.exports = {
 
 	signup: function(req, res) {
 		User.create({
+			username: req.param('username'),
 			email: req.param('email'),
 			password: req.param('password')
 		}, function(err) {
+			if (err) return res.view('user/login', {
+					message: err
+				});
 			return res.redirect('/login');
 		});
 	},
