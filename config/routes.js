@@ -42,7 +42,7 @@ module.exports.routes = {
   // routes to handle Boards
   'get /board/create': 'Board.createForm',
   'post /board/create': 'Board.create',
-  'get /board/:id': 'Board.show',
+  'get /board/:board_id': 'Board.show',
 
   // routes to create new users, login and logout
   'get /signup': 'Auth.signupForm',

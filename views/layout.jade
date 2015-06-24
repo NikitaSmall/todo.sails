@@ -36,9 +36,9 @@ html
               a(href='/') Главная
             li
               a(href='board/create') Новая доска
-            if req.param('board')
+            if req.param('board_id')
               li
-                a(href='/task/new/' + req.param('board')) Новая задача
+                a(href='/task/new/' + req.param('board_id')) Новая задача
             if req.user
               li
                 a(href='/logout') Выйти
