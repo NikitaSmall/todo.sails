@@ -30,6 +30,10 @@ module.exports.policies = {
 
   TaskController: {
     '*': 'isAuthenticated'
+  },
+
+  BoardController: {
+    '*': 'isAuthenticated'
   }
 
   /***************************************************************************

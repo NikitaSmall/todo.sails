@@ -27,9 +27,10 @@ module.exports = {
 			title: req.param('title', 'Unnamed'),
 			description: req.param('description', ''),
 			owner: req.user.id,
+			task_board: req.param('board'),
 			complete: false
 		}, function(err) {
-			return res.redirect('/');
+			return res.redirect('/board/' + req.param('board'));
 		});
 	}
 };

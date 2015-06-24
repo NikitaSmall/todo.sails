@@ -36,8 +36,13 @@ module.exports.routes = {
   'get /': 'Task.index',
 
   // routes to create new tasks
-  'get /task/new': 'Task.createTaskForm',
+  'get /task/new/:board': 'Task.createTaskForm',
   'post /createTask': 'Task.createTask',
+
+  // routes to handle Boards
+  'get /board/create': 'Board.createForm',
+  'post /board/create': 'Board.create',
+  'get /board/:id': 'Board.show',
 
   // routes to create new users, login and logout
   'get /signup': 'Auth.signupForm',

@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+
+  h1.row Добавить новую доску
+
+  .row
+    form(action='/board/create', method='post')
+      input(type='text', name='title')
+      input.button(type='submit', value='Новая доска!')

@@ -1,5 +1,5 @@
 /**
-* Task.js
+* Board.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -11,17 +11,9 @@ module.exports = {
     title: {
       type: 'string'
     },
-    description: {
-      type: 'string'
-    },
-    complete: {
-      type: 'boolean'
-    },
-    owner: {
-      model: 'user'
-    },
-    task_board: {
-      model: 'board'
+    tasks: {
+      collection: 'task',
+      via: 'task_board'
     }
   }
 };

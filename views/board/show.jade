@@ -1,0 +1,15 @@
+extends  ../layout
+
+block content
+  .row.panel= board.title
+  br
+  .row
+    | Задачи:
+    - each task in board.tasks
+      .medium-12
+        =task.id + ') ' + task.title 
+        
+    if board.tasks.length == 0
+      .alert-box.radius На этой доске нет задач!
+      
+    a.button(href='/task/new/' + board.id) Добавить новую задачу

@@ -23,6 +23,7 @@ html
           ul.off-canvas-list
             li
               label Списки задач
+            
         
         aside.right-off-canvas-menu
           ul.off-canvas-list
@@ -30,6 +31,8 @@ html
               label Навигация
             li
               a(href='/') Главная
+            li
+              a(href='board/create') Новая доска
             li
               a(href='/task/new') Новая задача
             if req.user
