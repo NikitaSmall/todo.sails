@@ -17,11 +17,16 @@ module.exports = {
 		});
 	},
 
+	createTaskForm: function (req, res) {
+		return res.view('task/new');
+	},
+
 	// create a new task
 	createTask: function (req, res) {
 		Task.create({
 			title: req.param('title', 'Unnamed'),
 			description: req.param('description', ''),
+			owner: req.user.id,
 			complete: false
 		}, function(err) {
 			return res.redirect('/');

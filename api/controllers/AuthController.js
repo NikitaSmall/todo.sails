@@ -15,6 +15,14 @@ module.exports = {
 		rest: false
 	},
 
+	loginForm: function(req, res) {
+		return res.view('user/login');
+	},
+
+	signupForm: function(req, res) {
+		return res.view('user/signup');
+	},
+
 	login: function(req, res) {
 		passport.authenticate('local', function(err, user, info) {
 			if ((err) || (!user)) {

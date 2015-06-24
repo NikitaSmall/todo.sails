@@ -7,7 +7,43 @@ html
     link(rel='stylesheet', href='/styles/importer.css')
     script(src='/foundation/js/vendor/modernizr.js')
   body
-    block content
+    .off-canvas-wrap(data-offcanvas)
+      .inner-wrap
+        nav.tab-bar
+          section.left-small
+            a.left-off-canvas-toggle.menu-icon
+              span
+          section.middle.tab-bar-section
+            h1.title Никиткин настоящий задачник
+          section.right-small
+            a.right-off-canvas-toggle.menu-icon
+              span
+        
+        aside.left-off-canvas-menu
+          ul.off-canvas-list
+            li
+              label Списки задач
+        
+        aside.right-off-canvas-menu
+          ul.off-canvas-list
+            li
+              label Навигация
+            li
+              a(href='/') Главная
+            li
+              a(href='/task/new') Новая задача
+            if req.user
+              li
+                a(href='/logout') Выйти
+            else
+              li 
+                a(href='/login') Войти
+              li
+                a(href='/signup') Зарегистрироваться
+                
+        section.main-section
+          block content
+        a.exit-off-canvas
 
     script(src='/foundation/js/vendor/jquery.js')
     script(src='/foundation/js/foundation.min.js')

@@ -8,10 +8,17 @@
 module.exports = {
 
   attributes: {
-    title : { type: 'string' },
-
-    description : { type: 'string' },
-
-    complete : { type: 'boolean' }
+    title: {
+      type: 'string'
+    },
+    description: {
+      type: 'string'
+    },
+    complete: {
+      type: 'boolean'
+    },
+    owner: {
+      model: 'user'
+    }
   }
 };

@@ -36,13 +36,13 @@ module.exports.routes = {
   'get /': 'Task.index',
 
   // routes to create new tasks
-  'get /task/new': { view: 'task/new' },
+  'get /task/new': 'Task.createTaskForm',
   'post /createTask': 'Task.createTask',
 
   // routes to create new users, login and logout
-  'get /signup': { view: 'user/signup' },
+  'get /signup': 'Auth.signupForm',
   'post /signup': 'Auth.signup',
-  'get /login': { view: 'user/login' },
+  'get /login': 'Auth.loginForm',
   'post /login': 'Auth.login',
   '/logout': 'Auth.logout'
 

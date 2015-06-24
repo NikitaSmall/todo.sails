@@ -24,6 +24,10 @@ module.exports = {
       type: 'string',
       minLength: 6,
       required: true
+    },
+    tasks: {
+      collection: 'task',
+      via: 'owner'
     }
   },
 
