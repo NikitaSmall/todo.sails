@@ -26,14 +26,14 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': true,
+  '*': 'layoutBoards',
 
   TaskController: {
-    '*': 'isAuthenticated'
+    '*': ['isAuthenticated', 'layoutBoards']
   },
 
   BoardController: {
-    '*': 'isAuthenticated'
+    '*': ['isAuthenticated', 'layoutBoards']
   }
 
   /***************************************************************************

@@ -23,7 +23,10 @@ html
           ul.off-canvas-list
             li
               label Списки задач
-            
+            if layoutBoards.length > 0
+              -each board in layoutBoards
+                li
+                  a(href='board/' + board.id)= board.title
         
         aside.right-off-canvas-menu
           ul.off-canvas-list
@@ -33,8 +36,9 @@ html
               a(href='/') Главная
             li
               a(href='board/create') Новая доска
-            li
-              a(href='/task/new') Новая задача
+            if req.param('board')
+              li
+                a(href='/task/new/' + req.param('board')) Новая задача
             if req.user
               li
                 a(href='/logout') Выйти
