@@ -1,15 +1,28 @@
 extends  ../layout
 
 block content
-  .row.panel= board.title
+  .row.panel Задачи на доске "#{board.title}":
   br
   .row
-    | Задачи:
-    - each task in board.tasks
-      .medium-12
-        =task.id + ') ' + task.title 
+    if board.tasks.length > 0
+      table
+        thead
+          tr
+            th Выполнено?
+            th Название
+            th Описание
+        tbody
+          - each task in board.tasks
+            tr
+              td
+                input#task-checkbox(type='checkbox', data-id=task.id, checked=task.complete)
+              td
+                =task.title
+              td
+                =task.description
+
         
     if board.tasks.length == 0
-      .alert-box.radius На этой доске нет задач!
+      .alert-box.radius.h2 Задач на доске нет. Попроси друзей накидать!
       
-    a.button(href='/task/new/' + board.id) Добавить новую задачу
+    a.button(href='/task/new/' + board.id) Добавить сюда новую задачу

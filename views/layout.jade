@@ -14,7 +14,10 @@ html
             a.left-off-canvas-toggle.menu-icon
               span
           section.middle.tab-bar-section
-            h1.title Никиткин настоящий задачник
+            if req.user
+              h1 Привет, #{req.user.username}! 
+            else
+              h1.title Никиткин настоящий задачник
           section.right-small
             a.right-off-canvas-toggle.menu-icon
               span
@@ -34,8 +37,9 @@ html
               label Навигация
             li
               a(href='/') Главная
-            li
-              a(href='board/create') Новая доска
+            if req.user  
+              li
+                a(href='board/create') Новая доска
             if req.param('board_id')
               li
                 a(href='/task/new/' + req.param('board_id')) Новая задача
@@ -49,6 +53,7 @@ html
                 a(href='/signup') Зарегистрироваться
                 
         section.main-section
+          br
           block content
         a.exit-off-canvas
 

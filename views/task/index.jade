@@ -1,12 +1,26 @@
 extends  ../layout
 
 block content
-  .row.panel Hello to my task editor!
+  .row.panel.h2 Мои последние задачи:
   br
   .row
-    - each task in tasks
-      .medium-12
-        =task.id + ') ' + task.title
+    if tasks.length > 0
+      table
+        thead
+          tr
+            th Выполнено?
+            th Название
+            th Описание
+        tbody
+          - each task in tasks
+            tr
+              td
+                input#task-checkbox(type='checkbox', data-id=task.id, checked=task.complete)
+              td
+                =task.title
+              td
+                =task.description
+
         
     if tasks.length == 0
-      .alert-box.radius Your task-list is empty!
+      .alert-box.radius.h2 Задач нет. Ты крут!

@@ -9,7 +9,7 @@ module.exports = {
 	// list of tasks action
 	index: function (req, res) {
 		// find all the records
-		Task.find({}, function(err, tasks) {
+		Task.find({ where: { owner: req.user.id }, limit: 10 }, function(e, tasks) {
 			// and show them into the view
 			return res.view('task/index',{
 				tasks: tasks
