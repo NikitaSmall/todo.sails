@@ -39,7 +39,12 @@ module.exports = {
 	},
 
 	checkedTask: function (req, res) {
-		Task.checkTask(req.param('id'), function() {
+		Task.checkTask(req.param('id'), function(task) {
+			// blast socket message about checked task
+      sails.sockets.blast('checked_task', {
+				message: 'check task#' + task.id,
+        task: task
+			});
 			return res.ok();
 		});
 	}

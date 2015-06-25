@@ -32,13 +32,7 @@ module.exports = {
 
       task.complete = !task.complete;
       task.save();
-
-      sails.sockets.blast('created_task', {
-				message: 'trying to change task #' + task.id,
-        task: task
-			});
-
-      cb();
+      cb(task);
     });
   }
 };
