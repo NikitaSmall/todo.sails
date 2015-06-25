@@ -23,5 +23,22 @@ module.exports = {
     task_board: {
       model: 'board'
     }
+  },
+
+  checkTask: function(task_id, cb) {
+    Task.findOne(task_id).exec(function(err, task) {
+      if (err) return cb(err);
+      if (!task) return cb(new Error('task not found.'));
+
+      task.complete = !task.complete;
+      task.save();
+
+      sails.sockets.blast('created_task', {
+				message: 'trying to change task #' + task.id,
+        task: task
+			});
+
+      cb();
+    });
   }
 };

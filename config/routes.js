@@ -39,6 +39,9 @@ module.exports.routes = {
   'get /task/new/:board': 'Task.createTaskForm',
   'post /createTask': 'Task.createTask',
 
+  // route to handle task checkbox click
+  'get /task/check/:id': 'Task.checkedTask',
+
   // routes to handle Boards
   'get /board/create': 'Board.createForm',
   'post /board/create': 'Board.create',

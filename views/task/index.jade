@@ -13,7 +13,7 @@ block content
             th Описание
         tbody
           - each task in tasks
-            tr
+            tr(id='task-row-' + task.id)
               td
                 input#task-checkbox(type='checkbox', data-id=task.id, checked=task.complete)
               td

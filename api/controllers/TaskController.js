@@ -36,5 +36,11 @@ module.exports = {
 			});
 			return res.redirect('/board/' + req.param('board'));
 		});
+	},
+
+	checkedTask: function (req, res) {
+		Task.checkTask(req.param('id'), function() {
+			return res.ok();
+		});
 	}
 };
