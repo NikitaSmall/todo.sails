@@ -33,6 +33,8 @@ module.exports = {
 			// blast a test socket message
 			sails.sockets.blast('created_task', {
 				message: 'User# ' + req.user.id + ' created a task - task# ' + task.id,
+				task: task,
+				owner: req.user
 			});
 			return res.redirect('/board/' + req.param('board'));
 		});

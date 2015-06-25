@@ -7,6 +7,13 @@ $(document).ready(function() {
   // someone created new task
   io.socket.on('created_task', function (msg) {
     console.log(msg);
+    var task = msg.task;
+
+    $('.check-list').append('<tr class="task-row-'+ task.id + '">' +
+    '<td><input type="checkbox" data-id="' + task.id + '"/></td>' +
+    '<td>' + task.title + '</td>' +
+    '<td>' + task.description + '</td>' +
+    '<td>' + msg.owner.username + '</td></tr>');
   });
 
   // someone checked a task
