@@ -22,9 +22,12 @@ module.exports = {
 
 	show: function(req, res) {
 		var id = req.param('board_id');
-		Board.findOne(id).populate('tasks').exec(function(err, board) {
-			return res.view('board/show', {
-				board: board
+		Task.find({  where: { task_board: id } }).populate('owner').exec(function(err, tasks) {
+			Board.findOne(id, function(err, board) {
+				return res.view('board/show', {
+					board: board,
+					tasks: tasks
+				});
 			});
 		});
 	}

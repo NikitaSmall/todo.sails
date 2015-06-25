@@ -4,15 +4,16 @@ block content
   .row.panel Задачи на доске "#{board.title}":
   br
   .row
-    if board.tasks.length > 0
+    if tasks.length > 0
       table
         thead
           tr
             th Выполнено?
             th Название
             th Описание
+            th Автор
         tbody
-          - each task in board.tasks
+          - each task in tasks
             tr(class='task-row-' + task.id)
               td
                 input.task-checkbox(type='checkbox', data-id=task.id, checked=task.complete)
@@ -20,9 +21,11 @@ block content
                 =task.title
               td
                 =task.description
+              td
+                =task.owner.username
 
         
-    if board.tasks.length == 0
+    if tasks.length == 0
       .alert-box.radius.h2 Задач на доске нет. Попроси друзей накидать!
       
     a.button(href='/task/new/' + board.id) Добавить сюда новую задачу
