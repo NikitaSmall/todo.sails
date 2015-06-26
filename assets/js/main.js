@@ -22,6 +22,16 @@ $(document).ready(function() {
     console.log(msg);
   });
 
+  // someone in room created a comment
+  io.socket.on('created_comment', function(msg) {
+    var comment = msg.comment;
+    var user = msg.user;
+
+    $('#comments').append('<div class="row comment">' +
+    user.username + ': ' + comment.text +
+    '</div>');
+  });
+
   // someone created new task
   io.socket.on('created_task', function(msg) {
     console.log(msg);

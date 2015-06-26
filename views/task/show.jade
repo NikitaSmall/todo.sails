@@ -14,13 +14,13 @@ block content
       - each comment in comments
         .row.comment
           =comment.author.username+ ': ' + comment.text
-    .row
-      form(action='/comment/create', method='POST')
-        .row
-          .large-12.columns
-            .row.collapse
-              .small-10.columns
-                input(type='text', name='text', placeholder='Комментарий!')
-                input(type='hidden', name='task_id', value=task.id)
-              .small-2.columns
-                input.button.postfix(type='submit', value='Опубликовать')
+  .row
+    form(action='/comment/create', method='POST')
+      .row
+        .large-12.columns
+          .row.collapse
+            .small-10.columns
+              input(type='text', name='text', placeholder='Комментарий!')
+              input(type='hidden', name='task_id', value=task.id)
+            .small-2.columns
+              input.button.postfix(type='submit', value='Опубликовать')
