@@ -21,6 +21,20 @@ module.exports = {
 		return res.view('task/new');
 	},
 
+	// show task with information
+	show: function (req, res) {
+		Task.findOne(req.param('id')).populate('owner').exec(function(e, task) {
+			Comment.find({
+					where: {task: req.param('id') }
+				}).populate('author').exec(function(e, comments) {
+				return res.view('task/show', {
+					task: task,
+					comments: comments
+				});
+			});
+		});
+	},
+
 	// create a new task
 	createTask: function (req, res) {
 		Task.create({

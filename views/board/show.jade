@@ -18,7 +18,7 @@ block content
               td
                 input.task-checkbox(type='checkbox', data-id=task.id, checked=task.complete)
               td
-                =task.title
+                a(href='/task/show/' + task.id)=task.title
               td
                 =task.description
               td

@@ -35,6 +35,9 @@ module.exports.routes = {
   // index page to see list of tasks
   'get /': 'Task.index',
 
+  // route to see specific task with comments
+  'get /task/show/:id': 'Task.show',
+
   // routes to create new tasks
   'get /task/new/:board': 'Task.createTaskForm',
   'post /createTask': 'Task.createTask',
@@ -46,6 +49,9 @@ module.exports.routes = {
   'get /board/create': 'Board.createForm',
   'post /board/create': 'Board.create',
   'get /board/:board_id': 'Board.show',
+
+  // routes to create new comment
+  'post /comment/create': 'Comment.create',
 
   // routes to create new users, login and logout
   'get /signup': 'Auth.signupForm',

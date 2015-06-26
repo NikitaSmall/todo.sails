@@ -22,6 +22,10 @@ module.exports = {
     },
     task_board: {
       model: 'board'
+    },
+    comments: {
+      collection: 'comment',
+      via: 'task'
     }
   },
 
