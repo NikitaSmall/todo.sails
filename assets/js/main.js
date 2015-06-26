@@ -4,8 +4,26 @@ $(document).ready(function() {
     $.get('/task/check/' + id);
   });
 
+  // blast to leave room
+  // if (!$('#task-show')[0]) {
+  //   io.socket.get('/task/leave', function(response) {
+  //     console.log(response);
+  //   });
+  // }
+
+  // blast to join room
+  if ($('#task-show')[0]) {
+    var id = $('.task-checkbox').data('id');
+    io.socket.get('/task/join', { task_id: id });
+  }
+
+  // handle debug message
+  io.socket.on('message', function(msg) {
+    console.log(msg);
+  });
+
   // someone created new task
-  io.socket.on('created_task', function (msg) {
+  io.socket.on('created_task', function(msg) {
     console.log(msg);
     var task = msg.task;
 

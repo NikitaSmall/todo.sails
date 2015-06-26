@@ -29,7 +29,9 @@ module.exports.policies = {
   '*': 'layoutBoards',
 
   TaskController: {
-    '*': ['isAuthenticated', 'layoutBoards']
+    '*': ['isAuthenticated', 'layoutBoards'],
+    'joinRoom': true,
+    'leaveRoom': true
   },
 
   BoardController: {

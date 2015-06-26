@@ -21,6 +21,29 @@ module.exports = {
 		return res.view('task/new');
 	},
 
+	joinRoom: function (req, res) {
+		var id = req.param('task_id');
+		// subscribe user to this room
+		sails.sockets.join(req.socket.id, 'task-' + id);
+		sails.sockets.broadcast('task-' + id, 'message', { message: 'Now you are connected to room task-' + id });
+
+		res.json({
+			success: true,
+			message: 'Now you are connected to room task-' + id
+		});
+	},
+
+	leaveRoom: function (req, res) {
+		var rooms = sails.sockets.socketRooms(req.socket.id);
+		for (var i in rooms) {
+			sails.sockets.leave(req.socket.id, rooms[i]);
+		}
+		res.json({
+			message: 'leaving a rooms',
+			rooms: rooms
+		});
+	},
+
 	// show task with information
 	show: function (req, res) {
 		Task.findOne(req.param('id')).populate('owner').exec(function(e, task) {

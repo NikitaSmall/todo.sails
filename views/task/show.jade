@@ -1,7 +1,7 @@
 extends  ../layout
 
 block content
-  .row.panel.callout.radius 
+  .row.panel.callout.radius#task-show
     =task.title
     input.task-checkbox(type='checkbox', data-id=task.id, checked=task.complete)
   br
