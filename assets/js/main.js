@@ -7,6 +7,7 @@ $(document).ready(function() {
   $(document).on('click', '.task-delete', function() {
     var id = $(this).data('id');
     $.post('/task/delete/' + id);
+    $('.task-row-' + id).hide('slow');
   });
 
   // blast to leave room
