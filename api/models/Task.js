@@ -38,5 +38,9 @@ module.exports = {
       task.save();
       cb(task);
     });
+  },
+
+  afterDestroy: function(destroyedTasks, cb) {
+    Comment.destroy({task: _.pluck(destroyedTasks, 'id') }).exec(cb);
   }
 };

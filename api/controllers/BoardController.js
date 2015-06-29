@@ -20,6 +20,18 @@ module.exports = {
 		});
 	},
 
+	joinRoom: function (req, res) {
+		var id = req.param('board_id');
+		// subscribe user to this room
+		sails.sockets.join(req.socket.id, 'board-' + id);
+		sails.sockets.broadcast('board-' + id, 'message', { message: 'Now you are connected to board task-' + id });
+
+		res.json({
+			success: true,
+			message: 'Now you are connected to board task-' + id
+		});
+	},
+
 	show: function(req, res) {
 		var id = req.param('board_id');
 		Task.find({  where: { task_board: id } }).populate('owner').exec(function(err, tasks) {

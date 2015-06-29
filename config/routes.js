@@ -45,9 +45,13 @@ module.exports.routes = {
   // route to handle task checkbox click
   'get /task/check/:id': 'Task.checkedTask',
 
+  // handle task deletion
+  'post /task/delete/:id': 'Task.deleteTask',
+
   // handle manipulating a room
   'get /task/leave': 'Task.leaveRoom',
   'get /task/join': 'Task.joinRoom',
+  'get /board/join': 'Board.joinRoom',
 
   // routes to handle Boards
   'get /board/create': 'Board.createForm',

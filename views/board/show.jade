@@ -1,7 +1,7 @@
 extends  ../layout
 
 block content
-  .row.panel Задачи на доске "#{board.title}":
+  .row.panel.board-show(data-id=board.id) Задачи на доске "#{board.title}":
   br
   .row
     if tasks.length > 0
@@ -12,6 +12,7 @@ block content
             th Название
             th Описание
             th Автор
+            th
         tbody.check-list
           - each task in tasks
             tr(class='task-row-' + task.id)
@@ -23,6 +24,8 @@ block content
                 =task.description
               td
                 =task.owner.username
+              td
+                span.task-delete.button.allert(data-id=task.id) Удалить задачу
 
         
     if tasks.length == 0

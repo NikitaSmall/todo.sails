@@ -4,6 +4,11 @@ $(document).ready(function() {
     $.get('/task/check/' + id);
   });
 
+  $('.task-delete').click(function() {
+    var id = $(this).data('id');
+    $.post('/task/delete/' + id);
+  });
+
   // blast to leave room
   // if (!$('#task-show')[0]) {
   //   io.socket.get('/task/leave', function(response) {
@@ -15,6 +20,11 @@ $(document).ready(function() {
   if ($('#task-show')[0]) {
     var id = $('.task-checkbox').data('id');
     io.socket.get('/task/join', { task_id: id });
+  }
+
+  if ($('.board-show')[0]) {
+    var id = $('.board-show').data('id');
+    io.socket.get('/board/join', { board_id: id });
   }
 
   // handle debug message

@@ -11,6 +11,7 @@ block content
             th Выполнено?
             th Название
             th Описание
+            th
         tbody.index-check-list
           - each task in tasks
             tr(class='task-row-' + task.id)
@@ -20,6 +21,8 @@ block content
                 a(href='/task/show/' + task.id)=task.title
               td
                 =task.description
+              td
+                span.task-delete.button.allert(data-id=task.id) Удалить задачу  
 
         
     if tasks.length == 0

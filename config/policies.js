@@ -35,7 +35,8 @@ module.exports.policies = {
   },
 
   BoardController: {
-    '*': ['isAuthenticated', 'layoutBoards']
+    '*': ['isAuthenticated', 'layoutBoards'],
+    'joinRoom': true
   }
 
   /***************************************************************************

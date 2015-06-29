@@ -77,6 +77,15 @@ module.exports = {
 		});
 	},
 
+	deleteTask: function (req, res) {
+		var id = req.param('id');
+		if (id == 'undefined') return res.json(500, { message: 'error' });
+
+		Task.destroy(id).exec(function(err, task) {
+			return res.json(200, { message: 'successful deletion of task# ' + task.id });
+		});
+	},
+
 	checkedTask: function (req, res) {
 		Task.checkTask(req.param('id'), function(task) {
 			// blast socket message about checked task
