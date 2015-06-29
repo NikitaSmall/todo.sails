@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  $('.task-checkbox').click(function() {
+  $(document).on('click', '.task-checkbox', function() {
     var id = $(this).data('id');
     $.get('/task/check/' + id);
   });
 
-  $('.task-delete').click(function() {
+  $(document).on('click', '.task-delete', function() {
     var id = $(this).data('id');
     $.post('/task/delete/' + id);
   });
@@ -51,7 +51,16 @@ $(document).ready(function() {
     '<td><input type="checkbox" data-id="' + task.id + '"/></td>' +
     '<td>' + task.title + '</td>' +
     '<td>' + task.description + '</td>' +
-    '<td>' + msg.owner.username + '</td></tr>');
+    '<td>' + msg.owner.username + '</td>' +
+    '<td>' + '<span data-id="' + task.id + '" class="task-delete button allert">Удалить задачу</span>' + '</td>' +
+    '</tr>');
+  });
+
+  // delete a task
+  io.socket.on('deleted_task', function(msg) {
+    console.log(msg);
+    var id = msg.task.id;
+    $('.task-row-' + task.id).hide('slow');
   });
 
   // someone checked a task

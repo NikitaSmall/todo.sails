@@ -68,7 +68,7 @@ module.exports = {
 			complete: false
 		}, function(err, task) {
 			// blast a test socket message
-			sails.sockets.blast('created_task', {
+			sails.sockets.broadcast('board-' + task.task_board, 'created_task', {
 				message: 'User# ' + req.user.id + ' created a task - task# ' + task.id,
 				task: task,
 				owner: req.user
@@ -82,6 +82,10 @@ module.exports = {
 		if (id == 'undefined') return res.json(500, { message: 'error' });
 
 		Task.destroy(id).exec(function(err, task) {
+			sails.sockets.broadcast('board-' + task.task_board, 'message', {
+				message: 'task was destroyed',
+				task: task
+			});
 			return res.json(200, { message: 'successful deletion of task# ' + task.id });
 		});
 	},
