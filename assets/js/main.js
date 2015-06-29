@@ -59,7 +59,7 @@ $(document).ready(function() {
   // delete a task
   io.socket.on('deleted_task', function(msg) {
     console.log(msg);
-    var id = msg.task.id;
+    var task = msg.task;
     $('.task-row-' + task.id).hide('slow');
   });
 

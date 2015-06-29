@@ -80,13 +80,14 @@ module.exports = {
 	deleteTask: function (req, res) {
 		var id = req.param('id');
 		if (id == 'undefined') return res.json(500, { message: 'error' });
-
-		Task.destroy(id).exec(function(err, task) {
-			sails.sockets.broadcast('board-' + task.task_board, 'message', {
-				message: 'task was destroyed',
-				task: task
+		Task.findOne(id, function(err, task) {
+			Task.destroy(id).exec(function(err) {
+				sails.sockets.broadcast('board-' + task.task_board, 'deleted_task', {
+					message: 'task was destroyed',
+					task: task
+				});
+				return res.json(200, { message: 'successful deletion of task# ' + task.id });
 			});
-			return res.json(200, { message: 'successful deletion of task# ' + task.id });
 		});
 	},
 
