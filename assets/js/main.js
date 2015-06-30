@@ -10,6 +10,11 @@ $(document).ready(function() {
     $('.task-row-' + id).hide('slow');
   });
 
+  $(document).on('click', '.board-delete', function() {
+    var id = $(this).data('id');
+    $.post('/board/delete/' + id);
+  });
+
   // blast to leave room
   // if (!$('#task-show')[0]) {
   //   io.socket.get('/task/leave', function(response) {
@@ -62,6 +67,15 @@ $(document).ready(function() {
     console.log(msg);
     var task = msg.task;
     $('.task-row-' + task.id).hide('slow');
+  });
+
+  io.socket.on('delete_my_board', function(msg) {
+    console.log(msg);
+    window.location.replace('/');
+  });
+
+  io.socket.on('delete_board', function(msg) {
+    console.log(msg);
   });
 
   // someone checked a task

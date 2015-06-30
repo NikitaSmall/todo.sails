@@ -48,6 +48,9 @@ module.exports.routes = {
   // handle task deletion
   'post /task/delete/:id': 'Task.deleteTask',
 
+  // handle board deletion
+  'post /board/delete/:id': 'Board.deleteBoard',
+
   // handle manipulating a room
   'get /task/leave': 'Task.leaveRoom',
   'get /task/join': 'Task.joinRoom',

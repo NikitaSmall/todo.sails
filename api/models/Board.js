@@ -15,5 +15,9 @@ module.exports = {
       collection: 'task',
       via: 'task_board'
     }
+  },
+
+  afterDestroy: function(destroyedBoards, cb) {
+    Task.destroy({ task_board: _.pluck(destroyedBoards, 'id') }).exec(cb);
   }
 };

@@ -28,8 +28,9 @@ html
               label Списки задач
             if layoutBoards.length > 0
               -each board in layoutBoards
-                li
+                li(id='board-' + board.id)
                   a(href='/board/' + board.id)= board.title
+                    span.label.button.tiny.alert.board-delete(data-id=board.id)  Удалить
         
         aside.right-off-canvas-menu
           ul.off-canvas-list

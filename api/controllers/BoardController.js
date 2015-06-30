@@ -42,5 +42,16 @@ module.exports = {
 				});
 			});
 		});
+	},
+
+	deleteBoard: function(req, res) {
+		var id = req.param('id');
+		Board.destroy(id).exec(function(err, board) {
+			sails.sockets.broadcast('board-' + id, 'delete_my_board', { message: 'board task-' + id + ' was deleted' });
+			sails.sockets.blast('delete_board', {
+				board: board
+			});
+			return res.redirect('/');
+		});
 	}
 };
